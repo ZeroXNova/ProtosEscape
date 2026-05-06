@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://di8vf01c2q2wm"]
+[gd_scene load_steps=19 format=4 uid="uid://di8vf01c2q2wm"]
 
 [ext_resource type="Script" uid="uid://dljn6lys5ox5r" path="res://level_base.gd" id="1_646pq"]
 [ext_resource type="Texture2D" uid="uid://7c7fxosghiew" path="res://assets/tileset.png" id="1_c57mx"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dx1mpu6dpilom" path="res://assets/sounds/384963__ispeakwaves__upbeat-funky-loop-electronic.wav" id="10_a5rkb"]
 [ext_resource type="Texture2D" uid="uid://cyuwsn2nmew23" path="res://assets/depths.png" id="10_e6jnn"]
 [ext_resource type="Script" uid="uid://bxnkpwh1udpnn" path="res://killzone.gd" id="10_fdc3t"]
+[ext_resource type="PackedScene" uid="uid://d0f23h5765j66" path="res://rocket_upgrade.tscn" id="12_fbe54"]
 [ext_resource type="PackedScene" uid="uid://ciwvj260nkc3r" path="res://HUD/hud.tscn" id="12_fdc3t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fdc3t"]
@@ -173,6 +174,9 @@ autoplay = true
 libraries = {
 &"": SubResource("AnimationLibrary_fbe54")
 }
+
+[node name="rocketUpgrade" parent="." instance=ExtResource("12_fbe54")]
+position = Vector2(271, 160)
 
 [connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
 [connection signal="win" from="exitDoorWay" to="." method="_on_win"]

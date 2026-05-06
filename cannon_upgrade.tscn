@@ -78,4 +78,14 @@ libraries = {
 }
 autoplay = "hover"
 
+[node name="upgradeDialog" type="AcceptDialog" parent="."]
+process_mode = 2
+transparent_bg = true
+title = ""
+size = Vector2i(226, 85)
+ok_button_text = "Cool!"
+dialog_text = "Cannon damage increased!"
+dialog_autowrap = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="confirmed" from="upgradeDialog" to="." method="_on_upgrade_dialog_confirmed"]
