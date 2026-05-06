@@ -1,0 +1,188 @@
+[gd_scene load_steps=23 format=3 uid="uid://cr7hjpeb4pev8"]
+
+[ext_resource type="Texture2D" uid="uid://cajuswrgwxuf1" path="res://assets/ProtoBase.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://d0eaucto5bhds" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://b6xnmo1d0nvbr" path="res://assets/ProtoShoot.png" id="3_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://bp0x417oxo472" path="res://assets/ProtoRun1.png" id="4_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://bus3vm567opda" path="res://assets/ProtoRun2.png" id="5_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://bs7wswdulr0hd" path="res://assets/ProtoRun3.png" id="6_dw050"]
+[ext_resource type="AudioStream" uid="uid://nltl50q561vi" path="res://assets/sounds/ProtoBlaster.wav" id="7_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://dy0axp48gcy74" path="res://assets/Protojump1.png" id="7_ivps1"]
+[ext_resource type="AudioStream" uid="uid://pkqmls4st22r" path="res://assets/sounds/ratchet.wav" id="8_dw050"]
+[ext_resource type="Texture2D" uid="uid://c7ikmemda0j82" path="res://assets/Protojump2.png" id="8_urp6f"]
+[ext_resource type="AudioStream" uid="uid://bc82vryf4s8vb" path="res://assets/sounds/tone-beep.wav" id="9_b26j0"]
+[ext_resource type="Texture2D" uid="uid://bf121ryvxvpjh" path="res://assets/Protojump3.png" id="9_urp6f"]
+[ext_resource type="Texture2D" uid="uid://dr41fk4sasqkl" path="res://assets/ProtoHurt.png" id="10_bwjto"]
+[ext_resource type="AudioStream" uid="uid://bdjmd3ys7kqst" path="res://assets/sounds/doorUnlock.wav" id="10_n7ghd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+radius = 14.0
+height = 60.0
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_4flbx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_606se"]
+resource_name = "double_jump"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_urp6f"), ExtResource("9_urp6f"), ExtResource("8_urp6f")]
+}
+
+[sub_resource type="Animation" id="Animation_u1c27"]
+resource_name = "hurt"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.37, 0.56, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.01, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("10_bwjto"), ExtResource("1_4flbx")]
+}
+
+[sub_resource type="Animation" id="Animation_bwjto"]
+resource_name = "jump"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_4flbx"), ExtResource("7_ivps1"), ExtResource("1_4flbx"), ExtResource("8_urp6f")]
+}
+
+[sub_resource type="Animation" id="Animation_i3pqv"]
+resource_name = "run"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_4flbx"), ExtResource("4_2hs0m"), ExtResource("5_1jxqw"), ExtResource("6_dw050"), ExtResource("1_4flbx")]
+}
+
+[sub_resource type="Animation" id="Animation_hqtel"]
+resource_name = "shoot"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [ExtResource("1_4flbx"), ExtResource("3_i3pqv"), ExtResource("1_4flbx")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hs0m"]
+_data = {
+&"RESET": SubResource("Animation_sweqy"),
+&"double_jump": SubResource("Animation_606se"),
+&"hurt": SubResource("Animation_u1c27"),
+&"jump": SubResource("Animation_bwjto"),
+&"run": SubResource("Animation_i3pqv"),
+&"shoot": SubResource("Animation_hqtel")
+}
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 21
+script = ExtResource("1_onrkg")
+jump_speed = -350
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4flbx")
+
+[node name="cannon" type="Marker2D" parent="Sprite2D"]
+position = Vector2(21, 8)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("CapsuleShape2D_onrkg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2hs0m")
+}
+
+[node name="shootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_1jxqw")
+
+[node name="upgrade" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_dw050")
+volume_db = 3.5
+
+[node name="keycard" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_b26j0")
+volume_db = 3.5
+
+[node name="unlock" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_n7ghd")
+volume_db = 3.5

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdj51m8r74wv5"]
+
+[ext_resource type="Texture2D" uid="uid://bebjm3cklmik1" path="res://assets/SecurityBot.png" id="1_d0x1e"]
+[ext_resource type="Script" uid="uid://c24q3ncqbctua" path="res://security_bot.gd" id="1_frbhv"]
+[ext_resource type="AudioStream" uid="uid://bwpi0qyrne8du" path="res://assets/sounds/EnemyBlaster.wav" id="3_tyk4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frbhv"]
+size = Vector2(37.1429, 97.4286)
+
+[node name="securityBot" type="CharacterBody2D" groups=["enemies"]]
+scale = Vector2(0.7, 0.7)
+collision_layer = 4
+collision_mask = 23
+script = ExtResource("1_frbhv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d0x1e")
+flip_h = true
+
+[node name="gun" type="Marker2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
+position = Vector2(-1.42856, 12.7143)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_frbhv")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 23
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="shootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tyk4v")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

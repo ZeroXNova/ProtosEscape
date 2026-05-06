@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdj51m8r74wv5"]
+
+[ext_resource type="Texture2D" uid="uid://bebjm3cklmik1" path="res://assets/SecurityBot.png" id="1_d0x1e"]
+[ext_resource type="Script" uid="uid://c24q3ncqbctua" path="res://security_bot.gd" id="1_frbhv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frbhv"]
+size = Vector2(35.1429, 88)
+
+[node name="securityBot" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_frbhv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d0x1e")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
+position = Vector2(-0.428572, 8)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_frbhv")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

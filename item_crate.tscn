@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c78mpr0p8u4l2"]
+
+[ext_resource type="Script" uid="uid://beerbndklhkwp" path="res://item_crate.gd" id="1_amg0b"]
+[ext_resource type="Texture2D" uid="uid://c15r3xmxd2efu" path="res://assets/itemCrate.png" id="2_bo0v5"]
+[ext_resource type="AudioStream" uid="uid://dqhtlp6u4wf4l" path="res://assets/sounds/crate-break.wav" id="3_bo0v5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1unl5"]
+size = Vector2(59, 58)
+
+[node name="itemCrate" type="StaticBody2D" groups=["itemCrate"]]
+collision_layer = 16
+collision_mask = 53
+script = ExtResource("1_amg0b")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["itemCrate"]]
+scale = Vector2(0.523438, 0.523438)
+texture = ExtResource("2_bo0v5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["itemCrate"]]
+shape = SubResource("RectangleShape2D_1unl5")
+
+[node name="breakSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bo0v5")

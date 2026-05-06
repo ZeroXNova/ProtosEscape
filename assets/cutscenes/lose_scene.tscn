@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkhflt8qjoumh"]
+
+[ext_resource type="FontFile" uid="uid://ckemh8xn5sk6o" path="res://assets/Hunterra.ttf" id="1_44ud1"]
+[ext_resource type="Script" uid="uid://cvn5pirqlw14d" path="res://assets/cutscenes/lose_scene.gd" id="1_vj2bc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0iib"]
+bg_color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+
+[sub_resource type="Animation" id="Animation_72bc6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExitText:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Continue:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ia2jc"]
+resource_name = "Skip"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExitText:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vj2bc"]
+resource_name = "continue"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Continue:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_31fne"]
+resource_name = "fadeIn"
+length = 0.75
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ia2jc"]
+_data = {
+&"RESET": SubResource("Animation_72bc6"),
+&"Skip": SubResource("Animation_ia2jc"),
+&"continue": SubResource("Animation_vj2bc"),
+&"fadeIn": SubResource("Animation_31fne")
+}
+
+[node name="loseScene" type="CanvasLayer"]
+script = ExtResource("1_vj2bc")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h0iib")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -568.0
+offset_top = -315.0
+offset_right = 201.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_44ud1")
+theme_override_font_sizes/normal_font_size = 28
+scroll_active = false
+scroll_following = true
+
+[node name="ExitText" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -387.0
+offset_top = 27.0
+offset_right = -29.0
+offset_bottom = 55.0
+grow_horizontal = 0
+theme_override_fonts/normal_font = ExtResource("1_44ud1")
+theme_override_font_sizes/normal_font_size = 23
+text = "Press ESC to Exit"
+
+[node name="Continue" type="RichTextLabel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -404.0
+offset_top = -18.5
+offset_right = 404.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_44ud1")
+theme_override_font_sizes/normal_font_size = 27
+text = "Press ESC to Return to Main Menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Panel")
+libraries = {
+&"": SubResource("AnimationLibrary_ia2jc")
+}
+
+[connection signal="typing_finished" from="." to="." method="_restart_Game"]

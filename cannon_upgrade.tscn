@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://34hkwdw7pn06"]
+
+[ext_resource type="Texture2D" uid="uid://wugf4t80gnft" path="res://assets/cannonUpgrade.png" id="1_2tn1c"]
+[ext_resource type="Script" uid="uid://dhe1kyup1hi2u" path="res://cannon_upgrade.gd" id="1_n444v"]
+[ext_resource type="FontFile" uid="uid://ckemh8xn5sk6o" path="res://assets/Hunterra.ttf" id="3_261c7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n444v"]
+size = Vector2(44, 28)
+
+[sub_resource type="Animation" id="Animation_261c7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.261799]
+}
+
+[sub_resource type="Animation" id="Animation_n444v"]
+resource_name = "hover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.261799, 0.0, -0.261799, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dvwvw"]
+_data = {
+&"RESET": SubResource("Animation_261c7"),
+&"hover": SubResource("Animation_n444v")
+}
+
+[node name="cannonUpgrade" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_n444v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.261799
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_2tn1c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n444v")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -38.0
+offset_top = -40.0
+offset_right = 38.0
+offset_bottom = -8.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_261c7")
+theme_override_font_sizes/normal_font_size = 11
+text = "Pulse
+Cannon"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dvwvw")
+}
+autoplay = "hover"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

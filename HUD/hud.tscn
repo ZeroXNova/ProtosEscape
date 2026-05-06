@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciwvj260nkc3r"]
+
+[ext_resource type="Script" uid="uid://cv3pwiifpsdma" path="res://HUD/hud.gd" id="1_ymndn"]
+[ext_resource type="Texture2D" uid="uid://c2wk4sqtu6qgt" path="res://assets/HUD/battery.png" id="2_yu8mg"]
+[ext_resource type="Texture2D" uid="uid://dj0ovq4e71ohq" path="res://assets/HUD/keyCard.png" id="3_jvmdh"]
+
+[node name="HUD" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_ymndn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LifeCounter" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="L1" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+layout_mode = 2
+texture = ExtResource("2_yu8mg")
+
+[node name="L2" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+layout_mode = 2
+texture = ExtResource("2_yu8mg")
+
+[node name="L3" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+layout_mode = 2
+texture = ExtResource("2_yu8mg")
+
+[node name="L4" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+layout_mode = 2
+texture = ExtResource("2_yu8mg")
+
+[node name="L5" type="TextureRect" parent="HBoxContainer/LifeCounter"]
+layout_mode = 2
+texture = ExtResource("2_yu8mg")
+
+[node name="KeyCounter" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="K1" type="TextureRect" parent="HBoxContainer/KeyCounter"]
+layout_mode = 2
+texture = ExtResource("3_jvmdh")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="K2" type="TextureRect" parent="HBoxContainer/KeyCounter"]
+layout_mode = 2
+texture = ExtResource("3_jvmdh")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="K3" type="TextureRect" parent="HBoxContainer/KeyCounter"]
+layout_mode = 2
+texture = ExtResource("3_jvmdh")
+expand_mode = 3
+stretch_mode = 5

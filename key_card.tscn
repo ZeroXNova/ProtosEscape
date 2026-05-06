@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://vurn7a3qnlkb"]
+
+[ext_resource type="Script" uid="uid://dp1p3d6djihcj" path="res://key_card.gd" id="1_uxmje"]
+[ext_resource type="Texture2D" uid="uid://dj0ovq4e71ohq" path="res://assets/HUD/keyCard.png" id="2_uxmje"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxmje"]
+size = Vector2(63.3571, 89.7857)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydvbn"]
+size = Vector2(78, 96)
+
+[node name="keyCard" type="RigidBody2D" groups=["item"]]
+collision_layer = 8
+collision_mask = 19
+mass = 0.084
+gravity_scale = 1.39
+script = ExtResource("1_uxmje")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_uxmje")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0874996, -0.2875)
+scale = Vector2(0.35, 0.35)
+shape = SubResource("RectangleShape2D_uxmje")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+scale = Vector2(0.35, 0.35)
+shape = SubResource("RectangleShape2D_ydvbn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

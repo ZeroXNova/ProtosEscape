@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4nmvbavw1itu"]
+
+[ext_resource type="Script" uid="uid://b6ryb5n2rmaga" path="res://security_dude.gd" id="1_3co88"]
+[ext_resource type="Texture2D" uid="uid://cysbp5og5yekm" path="res://assets/securityDude.png" id="2_3co88"]
+[ext_resource type="AudioStream" uid="uid://bwpi0qyrne8du" path="res://assets/sounds/EnemyBlaster.wav" id="3_6p4lt"]
+[ext_resource type="Texture2D" uid="uid://d2gcl557hf7ti" path="res://assets/securityDudeShoot.png" id="4_fwnh0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frbhv"]
+size = Vector2(35.1429, 64.2857)
+
+[sub_resource type="Animation" id="Animation_oksvb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3co88")]
+}
+
+[sub_resource type="Animation" id="Animation_yw4c4"]
+resource_name = "shoot"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_3co88"), ExtResource("4_fwnh0"), ExtResource("2_3co88")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vllnr"]
+_data = {
+&"RESET": SubResource("Animation_oksvb"),
+&"shoot": SubResource("Animation_yw4c4")
+}
+
+[node name="securityDude" type="CharacterBody2D" groups=["enemies"]]
+scale = Vector2(0.7, 0.7)
+collision_layer = 4
+collision_mask = 23
+script = ExtResource("1_3co88")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3co88")
+flip_h = true
+
+[node name="gun" type="Marker2D" parent="Sprite2D"]
+position = Vector2(21.4286, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
+position = Vector2(-0.428572, 9.28571)
+shape = SubResource("RectangleShape2D_frbhv")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 23
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="shootSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6p4lt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vllnr")
+}
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://b04jtu8rqt2ny"]
+
+[ext_resource type="FontFile" uid="uid://ckemh8xn5sk6o" path="res://assets/Hunterra.ttf" id="1_cynlc"]
+[ext_resource type="Script" uid="uid://ci018lomb6fsl" path="res://assets/cutscenes/intro_scene.gd" id="1_h0iib"]
+[ext_resource type="Texture2D" uid="uid://cxy7yub077qop" path="res://assets/ProtoHead.png" id="3_31fne"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h0iib"]
+bg_color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+
+[sub_resource type="Animation" id="Animation_72bc6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/ExitText:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ia2jc"]
+resource_name = "Skip"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/ExitText:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_31fne"]
+resource_name = "fadeIn"
+length = 0.75
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ia2jc"]
+_data = {
+&"RESET": SubResource("Animation_72bc6"),
+&"Skip": SubResource("Animation_ia2jc"),
+&"fadeIn": SubResource("Animation_31fne")
+}
+
+[node name="introScene" type="CanvasLayer"]
+script = ExtResource("1_h0iib")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h0iib")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -568.0
+offset_top = -315.0
+offset_right = 174.0
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_cynlc")
+theme_override_font_sizes/normal_font_size = 26
+text = "Hi, my name's Proto!"
+
+[node name="ExitText" type="RichTextLabel" parent="Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 265.0
+offset_top = -333.0
+offset_right = 623.0
+offset_bottom = -305.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_cynlc")
+theme_override_font_sizes/normal_font_size = 23
+text = "Press ESC to Skip"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1164, 385)
+texture = ExtResource("3_31fne")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ia2jc")
+}
