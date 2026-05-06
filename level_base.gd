@@ -3,13 +3,14 @@ extends Node2D
 @onready var player = $player
 @onready var spawn_point = $SpawnPoint
 
-var level
+@export var level_id: int = 1
+
 
 
 
 func _ready():
-	level = get_tree().current_scene.name
 	GameState.save_game()
+	GameState.current_level = level_id
 	player.global_position = spawn_point.global_position
 	$mainMusic.play()
 	
@@ -17,7 +18,7 @@ func _ready():
 func _on_win():
 	$fadeToBlack.play("fadeIn")
 	await $fadeToBlack.animation_finished
-	if level == "Level03":
+	if level_id == 3 :
 		GameState.winScene()
 	else:
 		GameState.next_level()

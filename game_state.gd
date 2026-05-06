@@ -24,7 +24,7 @@ func restart():
 	
 func next_level():
 	current_level += 1
-	
+	print(current_level)
 	if current_level <= num_levels:
 		get_tree().change_scene_to_file(game_scene)
 		

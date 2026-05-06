@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var speed = 50
 @export var gravity = 900
 @export var drop_chance := 0.5
-var facing = 1
+@export var facing = 1
 var lives = 3
 var active = false
 var vision_distance

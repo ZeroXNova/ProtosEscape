@@ -40,6 +40,7 @@ position = Vector2(1694, 599)
 
 [node name="securityBot3" parent="." index="7" instance=ExtResource("3_oy1tr")]
 position = Vector2(1424, 601)
+facing = -1
 
 [node name="securityBot4" parent="." index="8" instance=ExtResource("3_oy1tr")]
 position = Vector2(726, 604)
@@ -52,6 +53,7 @@ position = Vector2(1187, -40)
 
 [node name="securityBot7" parent="." index="11" instance=ExtResource("3_oy1tr")]
 position = Vector2(731, -87)
+facing = -1
 
 [node name="keyCard" parent="." index="13"]
 position = Vector2(962, -83)

@@ -21,7 +21,6 @@ flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemies"]]
 position = Vector2(-1.42856, 12.7143)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_frbhv")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c78mpr0p8u4l2" path="res://item_crate.tscn" id="4_a84ol"]
 
 [node name="Level03" instance=ExtResource("1_lvcjt")]
+level_id = 3
 
 [node name="ParallaxLayer" parent="ParallaxBackground" index="0"]
 visible = true
@@ -96,6 +97,7 @@ position = Vector2(2956, 1348)
 [node name="securityDude" parent="." index="23" instance=ExtResource("3_7jd6u")]
 position = Vector2(-1728, 518)
 scale = Vector2(1, 1)
+facing = -1
 
 [node name="securityDude2" parent="." index="24" instance=ExtResource("3_7jd6u")]
 position = Vector2(-931, 564)
@@ -104,10 +106,12 @@ scale = Vector2(1, 1)
 [node name="securityDude3" parent="." index="25" instance=ExtResource("3_7jd6u")]
 position = Vector2(-635, 566)
 scale = Vector2(1, 1)
+facing = -1
 
 [node name="securityDude4" parent="." index="26" instance=ExtResource("3_7jd6u")]
 position = Vector2(200, 799)
 scale = Vector2(1, 1)
+facing = -1
 
 [node name="securityDude7" parent="." index="27" instance=ExtResource("3_7jd6u")]
 position = Vector2(-162, 707)
@@ -120,10 +124,12 @@ scale = Vector2(1, 1)
 [node name="securityDude5" parent="." index="29" instance=ExtResource("3_7jd6u")]
 position = Vector2(1136, 933)
 scale = Vector2(1, 1)
+facing = -1
 
 [node name="securityDude9" parent="." index="30" instance=ExtResource("3_7jd6u")]
 position = Vector2(1442, 933)
 scale = Vector2(1, 1)
+facing = -1
 
 [node name="securityDude10" parent="." index="31" instance=ExtResource("3_7jd6u")]
 position = Vector2(1305, 928)
@@ -136,6 +142,7 @@ scale = Vector2(1, 1)
 [node name="securityDude12" parent="." index="33" instance=ExtResource("3_7jd6u")]
 position = Vector2(3157, 1337)
 scale = Vector2(1, 1)
+facing = -1
 
 [node name="securityDude6" parent="." index="34" instance=ExtResource("3_7jd6u")]
 position = Vector2(1695, 935)
