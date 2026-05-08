@@ -30,7 +30,7 @@ func _on_new_game_pressed():
 
 func _on_continue_pressed():
 	if GameState.load_game():
-		GameState.skipToLevel(GameState.level_path)
+		GameState.skipToLevel(GameState.level_file)
 	else:
 		print("No valid save file found")
 
